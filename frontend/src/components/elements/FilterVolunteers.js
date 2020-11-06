@@ -8,8 +8,7 @@ import InputText from '../elements/InputText'
 import { getAllSkills } from '../../lib/api'
 
 const Wrapper = styled.div`
-  height: calc(100% + 5px);
-  margin-top: 5px;
+  height: 100%;
   border-radius: 2px;
   border: 1px solid ${props => props.theme.shadow};
   padding: 10px;
@@ -49,7 +48,7 @@ class FilterVolunteers extends React.Component {
   }
 
   render() {
-    const { schedule, skills, selectSchedule, selectSkills, selectStrict, strictSkills, strictSchedule, newGroupName, editNewGroupName } = this.props
+    const { schedule, skills, selectSchedule, selectSkills, selectStrict, strictSkills, strictSchedule, groupName, editGroupName } = this.props
     const { skillsOptions } = this.state
 
     const selectStyles = {
@@ -71,7 +70,7 @@ class FilterVolunteers extends React.Component {
 
     return (
       <Wrapper>
-        <Title>Select Volunteers</Title>
+        <Title>Organise Volunteers</Title>
         <p>show volunteers with these skills</p>
         <Select styles={selectStyles} value={skills} options={skillsOptions} onChange={selectSkills} isMulti />
         <CheckBox>
@@ -84,7 +83,7 @@ class FilterVolunteers extends React.Component {
           <label htmlFor="strictSchedule">All</label>
           <input type="checkbox" id="strictSchedule" checked={strictSchedule} onClick={selectStrict}/>
         </CheckBox>
-        <InputText label="group name" name="newGroupName" value={newGroupName} returnValue={editNewGroupName} />
+        <InputText label="group name" name="groupName" value={groupName} returnValue={editGroupName} />
       </Wrapper>
     )
   }

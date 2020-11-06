@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { MemberDetail } from '../common/PendingList'
+import { MemberDetail } from './PendingList'
 
 class ConfirmedList extends React.Component{
   
@@ -11,7 +11,6 @@ class ConfirmedList extends React.Component{
   componentDidMount = () => {
     this.setState({ campaignData: this.props.campaignData })
   }
-
 
   render () {
     const { campaignData } = this.state
