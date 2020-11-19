@@ -55,7 +55,7 @@ class Room extends React.Component {
 
   connectToSocket = () => {
     // TODO Replace this for deployment
-    const domain = 'localhost:8000'
+    const domain = window.location.hostname
     this.chatSocket = new WebSocket(
       `ws://${domain}/ws/chat/${this.props.match.params.room}/`
     )
