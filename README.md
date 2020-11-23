@@ -4,12 +4,12 @@
 ***Volunteer*** is an application designed to coordinate volunteer projects (campaigns). The program allows users to find and sign-up for campaigns in their area that are in need of volunteer help. In addition, users can create campaigns, and manage both the onboarding and coordination of volunteers throughout the project. User profiles include any optional skills they may have, as well as the shifts they are available to volunteer. Campaign owners can match volunteers based on these attributes when confirming or rejecting pending applicants. In addition, each campaign has chat rooms to make coordination easier. The campaign owner and coordinators have thier own chat in addition to a project wide chat for all members. An interactive map aids in searching for possible campaigns as well as locating those a user is signed up for.
 
 ## Project Brief
-Work either indivdually or remotely in a group to create a full-stack web appiclication using a Django Rest Framework to serve data from a PostgreSQL databse to a React front-end. The application must demonstrate the use of multiple relationships and CRUD functionality for the intended models. Plan and create an ERD prior to moving on to development.
+Work either individually or remotely in a group to create a full-stack web application using a Django Rest Framework to serve data from a PostgreSQL database to a React front end. The application must demonstrate the use of multiple relationships and CRUD functionality for the intended models. Plan and create an ERD prior to moving on to development.
 
 
 ## Technologies Used
 
-### Frontend
+### Front End
 * JavaScript
 * React
 * Bootstrap
@@ -18,7 +18,7 @@ Work either indivdually or remotely in a group to create a full-stack web appicl
 * Emoji Mart
 * Cloudinary
 
-### Backend
+### Back End
 * Django / Django Rest Framework
 * PyJWT
 * PostgreSQL
@@ -45,7 +45,7 @@ In addition, we wanted to incorporate a live group chat into the volunteer proje
   <img src='./images/erd.jpg'>
 </div>
 
-We separated into roles with my teammate working on the front-end and myself on the back-end. Our application consisted of several relationships between users, volunteer campaigns, chat messages, chat rooms as well as skills to apply to both campaigns and users. The decision for which models would 'host' the relationships was based on how the user would likely interact with the models. This evolved as the application developed and would ultimately lead to many areas that I consider opportunities for refactoring in the next version of the app.
+We separated into roles with my teammate working on the front end and myself on the back end. Our application consisted of several relationships between users, volunteer campaigns, chat messages, chat rooms as well as skills to apply to both campaigns and users. The decision for which models would 'host' the relationships was based on how the user would likely interact with the models. This evolved as the application developed and would ultimately lead to many areas that I consider opportunities for refactoring in the next version of the app.
 
 ```python
 class Campaign(models.Model):
@@ -81,7 +81,7 @@ class Campaign(models.Model):
         return f'{self.name} - Active: {self.active}'
 ```
 
-The back-end relies heavily on serializers to populate response bodies often consisting of several related models. This is especially the case for returning campaign details to the front-end. A campaign owner needs the ability to adjust a volunteer's status from pending to confirmed (or removed) and manage the skills associated with the campaign. To account for these features, we needed to ensure the response for the initial campaign detail request included the necessary fields to form the subsequent requests a coordinator may make. Additionally, we needed to account for the chat rooms and their related messages.
+The back end relies heavily on serializers to populate response bodies often consisting of several related models. This is especially the case for returning campaign details to the front end. A campaign owner needs the ability to adjust a volunteer's status from pending to confirmed (or removed) and manage the skills associated with the campaign. To account for these features, we needed to ensure the response for the initial campaign detail request included the necessary fields to form the subsequent requests a coordinator may make. Additionally, we needed to account for the chat rooms and their related messages.
 
 ```python
 class PopulatedCampaignSerializer(CampaignSerializer):
@@ -95,11 +95,11 @@ class PopulatedCampaignSerializer(CampaignSerializer):
     campaign_notices = NestedNoticeSerializer(many=True)
 ```
 
-Once we had the user stories and chat functioning properly between the front-end and the database, we worked together to complete styling and layout on the remaining front-end components. Remaining time was used to add extra features including 2 additional models for a campaign notice board as well as shifts that can be matched between users and campaigns (similar to skills). The final steps included error handling related to forms and authorization.
+Once we had the user stories and chat functioning properly between the front end and the database, we worked together to complete styling and layout on the remaining front end components. Remaining time was used to add extra features including 2 additional models for a campaign notice board as well as shifts that can be matched between users and campaigns (similar to skills). The final steps included error handling related to forms and authorization.
 
 <div align='center'>
   <img src='./images/landing.jpg'>
 </div>
 
 ## Future Version Considerations
-My teammate and I have decided to work on a second version of this application without the time constraint. Our goals for the back-end are to re-examine the models and views looking for opportunities to better utilize Django's capabilities, particularly our current use of and interaction with the ‘ManyToMany’ fields. On the front end, we would like to incorporate Hooks and a few other aspects that will make state and props management cleaner.
+My teammate and I have decided to work on a second version of this application without the time constraint. Our goals for the back end are to re-examine the models and views looking for opportunities to better utilize Django's capabilities, particularly our current use of and interaction with the ‘ManyToMany’ fields. On the front end, we would like to incorporate Hooks and a few other aspects that will make state and props management cleaner.
