@@ -107,7 +107,9 @@ Once we had the user stories and chat functioning properly between the front end
   <img src='./images/landing.jpg'>
 </div>
 
-## Future Version Considerations
+## Challenges, Bugs & Future Considerations
+Properly populating and nesting the response bodies provided back to the front end was an evolving process. As we added features and worked on the different user stories, we needed to re-work and/or add serializers. This is an area I'll definitely spend more time researching best practices and reading up on. Another big challenge proved to be deployment. Our initial process did not involve the use of Gunicorn, and thus we had requests timing out inconsistently. With that resolved, we needed to address our use of a local Redis server in development. Heroku provides an add-on feature for Redis, and properly configuring this took quite a bit of time.
+
 My teammate and I have decided to work on a second version of this application without the time constraint. Our goals for the back end are to re-examine the models and views looking for opportunities to better utilize Django's capabilities, particularly our current use of and interaction with the ‘ManyToMany’ fields. On the front end, we would like to incorporate Hooks and a few other aspects that will make state and props management cleaner.
 
 ## Key Takeaways
