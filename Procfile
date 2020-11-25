@@ -1,1 +1,1 @@
-web: gunicorn -w 3 -k uvicorn.workers.UvicornWorker manage.py:main
+web: gunicorn -w 3 -k uvicorn.workers.UvicornWorker project.asgi:appilcation
