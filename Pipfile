@@ -17,6 +17,7 @@ python-dotenv = "*"
 dj-database-url = "*"
 django-on-heroku = "*"
 gunicorn = "*"
+uvicorn = "*"
 
 [requires]
 python_version = "3.8"
