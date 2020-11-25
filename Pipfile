@@ -18,6 +18,7 @@ dj-database-url = "*"
 django-on-heroku = "*"
 gunicorn = "*"
 uvicorn = "*"
+uvloop = "*"
 
 [requires]
 python_version = "3.8"
