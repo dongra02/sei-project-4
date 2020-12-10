@@ -86,15 +86,24 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'project.wsgi.application'
 ASGI_APPLICATION = 'project.routing.application'
-CHANNEL_LAYERS = {
-    'default': {
+
+CHANNEL_LAYERS = {}
+
+if str(os.getenv('ENVIRONMENT')) == 'development':
+    CHANNEL_LAYERS['default'] = {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [os.environ.get("REDIS_URL", "redis://localhost:6379")],
+            "hosts": [('127.0.0.1', 6379)],
         },
-    },
-}
-
+        },
+    }
+else:
+    CHANNEL_LAYERS['default'] = {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [str(os.getenv('REDIS_URL'))],
+        },
+    }
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases

@@ -13,6 +13,18 @@ const withHeaders = () => {
   }
 }
 
+export const repeatUntilSuccess = async request => {
+  let response
+  while (!response?.data) {
+    try {
+      response = await request
+    } catch (err) {
+      // Retry?
+    }
+  }
+  return response
+}
+
 export const registerUser = formData => axios.post(`${baseUrl}/auth/register/`, formData)
 
 export const loginUser = formData => axios.post(`${baseUrl}/auth/login/`, formData)

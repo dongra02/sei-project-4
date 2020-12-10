@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 
-import { getSingleProfile } from './lib/api'
+import { getSingleProfile, repeatUntilSuccess } from './lib/api'
 
 import NavBar from './components/common/NavBar'
 import Notification from './components/common/Notification'
@@ -60,7 +60,7 @@ class App extends React.Component {
   }
 
   getUser = async (id) => {
-    const response = await getSingleProfile(id)
+    const response = await repeatUntilSuccess(() => getSingleProfile(id))
     this.setState({ userData: response.data }, this.getUserCampaigns)
     this.showNotification(`welcome back ${response.data.username}`)
   }

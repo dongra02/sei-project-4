@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import 'emoji-mart/css/emoji-mart.css'
 
-import { getSingleRoom } from '../../lib/api'
+import { getSingleRoom, repeatUntilSuccess } from '../../lib/api'
 
 import ChatWindow from '../elements/ChatWindow' 
 import InputArea from '../elements/InputArea'
@@ -72,7 +72,7 @@ class Room extends React.Component {
 
   getChatHistory = async () => {
     try {
-      const response = await getSingleRoom(this.props.match.params.room)
+      const response = await repeatUntilSuccess(() => getSingleRoom(this.props.match.params.room)) 
       const { name, members, messages } = response.data
       this.setState({ name, members, messages }, () => {
         this.chatWindow.scrollTop = this.chatWindow.scrollHeight

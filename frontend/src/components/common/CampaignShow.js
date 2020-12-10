@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { getSingleCampaign } from '../../lib/api'
+import { getSingleCampaign, repeatUntilSuccess } from '../../lib/api'
 
 import BannerImage from '../elements/BannerImage'
 import MultiList from '../elements/MultiList'
@@ -46,7 +46,7 @@ class CampaignShow extends React.Component {
   getCampaign = async () => {
     try {
       // Get campaign data and set filtered volunteer list to be all members
-      const response = await getSingleCampaign(this.props.match.params.id)
+      const response = await repeatUntilSuccess(() => getSingleCampaign(this.props.match.params.id))
       const campaignData = response.data
       this.setState({ campaignData })
       // Format rooms to be usuable by list component
