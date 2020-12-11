@@ -17,7 +17,7 @@ export const repeatUntilSuccess = async request => {
   let response
   while (!response?.data) {
     try {
-      response = await request
+      response = await request()
     } catch (err) {
       // Retry?
     }

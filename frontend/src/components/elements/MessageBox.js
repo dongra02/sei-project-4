@@ -93,7 +93,6 @@ class MessageBox extends React.Component {
     const { Wrapper, Accent, AccentShadow, Box, Text, Name, Link, linkMatch } = this
     const consecutiveMessage = prevMessage
       ? prevMessage.user.id === data.user.id : false
-    console.log(consecutiveMessage)
     return (
       <Wrapper consecutive={consecutiveMessage}>
         <AccentShadow/>
